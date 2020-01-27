@@ -76,7 +76,7 @@ namespace MicroServices.Common.Services
             }
             public BusBuilder SubscribeToEvent<TEvent>() where TEvent : IEvent
             {
-                var handler = (IEventHandler<TEvent>)_webHost.Services.GetService(typeof(ICommandHandler<TEvent>));
+                var handler = (IEventHandler<TEvent>)_webHost.Services.GetService(typeof(IEventHandler<TEvent>));
                 _bus.WithEventHandlerAsync(handler);
                 return this;
             }
