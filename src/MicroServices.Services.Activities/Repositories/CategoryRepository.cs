@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MicroServices.Services.Activities.Domain.Models;
 using MicroServices.Services.Activities.Domain.Repositories;
@@ -18,6 +19,7 @@ namespace MicroServices.Services.Activities.Repositories
 
         public async Task<Category> GetAsync(string name)
         {
+            Console.WriteLine(name);
             return await Collection.AsQueryable().FirstOrDefaultAsync(x => x.Name.Equals(name.ToLowerInvariant()));
         }
 

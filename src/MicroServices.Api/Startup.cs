@@ -37,6 +37,7 @@ namespace MicroServices.Api
 
             services.AddRabbitMq(Configuration);
             services.AddSingleton<IEventHandler<ActivityCreated>,ActivityCreatedHandler>();
+            services.AddSingleton<IEventHandler<CreateActivityRejected>, CreateActivityRejectedHandler>();
             services.AddSingleton<IActivityRepository,ActivityRepository>();
         }
 
@@ -53,6 +54,7 @@ namespace MicroServices.Api
             app.UseRouting();
 
             app.UseAuthorization();
+            app.ApplicationServices.GetService<IDatabaseInitializer>().InitializeAsync();
 
             app.UseEndpoints(endpoints =>
             {

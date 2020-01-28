@@ -18,6 +18,7 @@ namespace MicroServices.Api
             ServiceHost.Create<Startup>(args)
                 .UseRabbitMq()
                 .SubscribeToEvent<ActivityCreated>()
+                .SubscribeToEvent<CreateActivityRejected>()
                 .Build().Run();
             
         }

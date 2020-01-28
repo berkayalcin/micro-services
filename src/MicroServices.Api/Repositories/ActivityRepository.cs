@@ -10,7 +10,7 @@ namespace MicroServices.Api.Repositories
     // Data Transfer Objectlerin tutulduğu yerdir.
     public class ActivityRepository : IActivityRepository
     {
-        private IMongoDatabase _database;
+        private readonly IMongoDatabase _database;
 
         public ActivityRepository(IMongoDatabase database)
         {
@@ -18,21 +18,21 @@ namespace MicroServices.Api.Repositories
         }
 
         public async Task<Activity> GetAsync(Guid id)
-        {
-            return await Collection.AsQueryable().FirstOrDefaultAsync(x => x.Id == id);
-        }
+            => await Collection
+                .AsQueryable()
+                .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<IEnumerable<Activity>> BrowseAsync(Guid userId)
-        {
-            return await Collection.AsQueryable().Where(x => x.UserId.Equals(userId)).ToListAsync();
-        }
+            => await Collection
+                .AsQueryable()
+                .Where(x => x.UserId == userId)
+                .ToListAsync();
 
         public async Task AddAsync(Activity activity)
-        {
-            await Collection.InsertOneAsync(activity);
-        }
-        private IMongoCollection<Activity> Collection => _database.GetCollection<Activity>("Activities");
+            => await Collection.InsertOneAsync(activity);
 
+        private IMongoCollection<Activity> Collection
+            => _database.GetCollection<Activity>("Activities");
 
     }
 }
