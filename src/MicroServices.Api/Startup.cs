@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MicroServices.Api.Handlers;
+using MicroServices.Common.Events;
+using MicroServices.Common.RabbitMq;
+using MicroServices.Services.Activities.Domain.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +30,8 @@ namespace MicroServices.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddRabbitMq(Configuration);
+            services.AddSingleton<IEventHandler<ActivityCreated>,ActivityCreatedHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

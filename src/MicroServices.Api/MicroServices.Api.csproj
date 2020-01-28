@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MicroServices.Common\MicroServices.Common.csproj" />
+    <ProjectReference Include="..\MicroServices.Services.Activities\MicroServices.Services.Activities.csproj" />
   </ItemGroup>
 
   <ItemGroup>
