@@ -39,6 +39,8 @@ namespace MicroServices.Services.Activities
             services.AddSingleton<ICommandHandler<CreateActivity>, CreateActivityHandler>();
             services.AddSingleton<IActivityRepository, ActivityRepository>();
             services.AddSingleton<ICategoryRepository, CategoryRepository>();
+            services.AddSingleton<IActivityService, ActivityService>();
+
             services.AddSingleton<IDatabaseSeeder, CustomMongoSeeder>();
         }
 

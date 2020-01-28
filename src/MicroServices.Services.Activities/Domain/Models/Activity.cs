@@ -1,4 +1,5 @@
 ﻿using System;
+using MicroServices.Common.Exceptions;
 
 namespace MicroServices.Services.Activities.Domain.Models
 {
@@ -17,6 +18,11 @@ namespace MicroServices.Services.Activities.Domain.Models
 
         public Activity(Guid id,Category category,Guid userId,string name,string description,DateTime createdAt)
         {
+
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                throw new MicroServicesException("empty_activity_name", $"Activity name can not be empty.");
+            }
             Id = Guid.NewGuid();
             Name = name;
             Description = description;
