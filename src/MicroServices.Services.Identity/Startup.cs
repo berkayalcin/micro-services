@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MicroServices.Common.Auth;
 using MicroServices.Common.Commands;
 using MicroServices.Common.Mongo;
 using MicroServices.Common.RabbitMq;
@@ -40,6 +41,7 @@ namespace MicroServices.Services.Identity
             services.AddSingleton<IEncrypter, Encrypter>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddJwt(Configuration);
 
         }
 

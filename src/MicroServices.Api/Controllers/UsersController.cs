@@ -27,5 +27,7 @@ namespace MicroServices.Api.Controllers
             await _busClient.PublishAsync(command);
             return Accepted($"users");
         }
+
+
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MicroServices.Common.Commands;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RawRabbit;
@@ -27,6 +29,12 @@ namespace MicroServices.Api.Controllers
             command.CreatedAt = DateTime.UtcNow;
             await _busClient.PublishAsync(command);
             return Accepted($"activities/{command.Id}");
+        }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet("")]
+        public IActionResult Get()
+        {
+            return Ok("Secured");
         }
 
     }

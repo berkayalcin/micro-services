@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MicroServices.Common.Auth;
 using MicroServices.Common.Commands;
 using MicroServices.Common.Events;
 using MicroServices.Common.Mongo;
@@ -36,6 +37,7 @@ namespace MicroServices.Services.Activities
             services.AddControllers();
             services.AddMongoDb(Configuration);
             services.AddRabbitMq(Configuration);
+            services.AddJwt(Configuration);
             services.AddSingleton<ICommandHandler<CreateActivity>, CreateActivityHandler>();
             services.AddSingleton<IActivityRepository, ActivityRepository>();
             services.AddSingleton<ICategoryRepository, CategoryRepository>();

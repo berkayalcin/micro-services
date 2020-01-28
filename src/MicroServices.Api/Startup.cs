@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MicroServices.Api.Handlers;
+using MicroServices.Common.Auth;
 using MicroServices.Common.Events;
 using MicroServices.Common.RabbitMq;
 using MicroServices.Services.Activities.Domain.Repositories;
@@ -30,6 +31,7 @@ namespace MicroServices.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddJwt(Configuration);
             services.AddRabbitMq(Configuration);
             services.AddSingleton<IEventHandler<ActivityCreated>,ActivityCreatedHandler>();
         }
