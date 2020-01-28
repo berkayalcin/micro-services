@@ -7,6 +7,7 @@ using MongoDB.Driver.Linq;
 
 namespace MicroServices.Services.Activities.Repositories
 {
+    // TODO Flatten Object Patterns
     public class ActivityRepository:IActivityRepository
     {
         private IMongoDatabase _database;
