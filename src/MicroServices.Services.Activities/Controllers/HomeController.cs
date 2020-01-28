@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MicroServices.Services.Activities.Controllers
 {
-    [Route("[controller]")]
+    [Route("")]
     [ApiController]
     public class HomeController : ControllerBase
     {
