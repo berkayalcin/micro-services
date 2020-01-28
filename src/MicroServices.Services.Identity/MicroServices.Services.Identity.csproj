@@ -5,7 +5,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
   <PropertyGroup>
