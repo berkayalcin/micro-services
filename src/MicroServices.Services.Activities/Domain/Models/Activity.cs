@@ -16,7 +16,7 @@ namespace MicroServices.Services.Activities.Domain.Models
         {
         }
 
-        public Activity(Guid id,Category category,Guid userId,string name,string description,DateTime createdAt)
+        public Activity(Guid id,string category,Guid userId,string name,string description,DateTime createdAt)
         {
 
             if (String.IsNullOrWhiteSpace(name))
@@ -26,7 +26,7 @@ namespace MicroServices.Services.Activities.Domain.Models
             Id = Guid.NewGuid();
             Name = name;
             Description = description;
-            Category = category.Name;
+            Category = category;
             UserId = userId;
             CreatedAt = createdAt;
 

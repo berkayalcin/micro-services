@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MicroServices.Api.Handlers;
+using MicroServices.Api.Repositories;
 using MicroServices.Common.Auth;
 using MicroServices.Common.Events;
+using MicroServices.Common.Mongo;
 using MicroServices.Common.RabbitMq;
-using MicroServices.Services.Activities.Domain.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,8 +33,11 @@ namespace MicroServices.Api
         {
             services.AddControllers();
             services.AddJwt(Configuration);
+            services.AddMongoDb(Configuration);
+
             services.AddRabbitMq(Configuration);
             services.AddSingleton<IEventHandler<ActivityCreated>,ActivityCreatedHandler>();
+            services.AddSingleton<IActivityRepository,ActivityRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
