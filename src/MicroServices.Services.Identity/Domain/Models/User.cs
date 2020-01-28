@@ -1,5 +1,6 @@
 ﻿using System;
 using MicroServices.Common.Exceptions;
+using MicroServices.Services.Identity.Domain.Services;
 
 namespace MicroServices.Services.Identity.Domain.Models
 {
@@ -34,5 +35,20 @@ namespace MicroServices.Services.Identity.Domain.Models
 
         }
 
+        public void SetPassword(string password, IEncrypter encrypter)
+        {
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                throw new MicroServicesException("empty_password", $"Password cannot be empty.");
+            }
+
+            Salt = encrypter.GetSalt();
+            Password = encrypter.GetHash(password, Salt);
+        }
+
+        public bool ValidatePassword(string password,IEncrypter encrypter)
+        {
+            return Password.Equals(encrypter.GetHash(password, Salt));
+        }
     }
 }
