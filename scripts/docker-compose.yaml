@@ -6,6 +6,8 @@ services:
     depends_on:
       - mongo
       - rabbitmq
+      - api
+      - identity-service
     command: rabbitmq:5672
 
   api:
@@ -24,8 +26,12 @@ services:
     ports:
       - '5050:5050'
 
+
   identity-service:
     build: ../src/MicroServices.Services.Identity
+    depends_on:
+      - mongo
+      - rabbitmq
     links:
       - rabbitmq
       - mongo
@@ -34,6 +40,7 @@ services:
 
   mongo:
     image: mongo
+    
     volumes:
       - /mongo/data/db:/mongo/data/db
     ports:
