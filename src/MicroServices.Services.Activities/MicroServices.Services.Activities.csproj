@@ -4,7 +4,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
   </ItemGroup>
-
+  <PropertyGroup>
+    <PublishWirhAspNetCoreTargetManifest>false</PublishWirhAspNetCoreTargetManifest>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\MicroServices.Common\MicroServices.Common.csproj" />
   </ItemGroup>
